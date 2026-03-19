@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADHD-Friendly Habit Trackers — Adorable Accountability</title>
+    <meta name="description"
+        content="Habit trackers designed specifically for ADHD and neurodivergent brains. Simple, visual, ultra-low friction. No overwhelm, no guilt — just tiny steps forward.">
+    <meta name="keywords"
+        content="ADHD habit tracker, neurodivergent planner, ADHD friendly planner, ADHD organization, executive function, habit building ADHD">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+    <style>
+        /* ADHD page specific styles */
+        .adhd-hero {
+            background: linear-gradient(170deg, #FFF8F0 0%, #E8F0E4 40%, #F5D6C8 100%);
+            padding: 120px 0 80px;
+        }
+
+        .adhd-hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .adhd-hero h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .adhd-hero h1 span {
+            color: var(--sage-dark);
+        }
+
+        .adhd-stats {
+            display: flex;
+            gap: 24px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .adhd-stat {
+            background: var(--white);
+            padding: 12px 20px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+        }
+
+        .adhd-stat-number {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--sage-dark);
+        }
+
+        .adhd-stat-label {
+            font-size: 0.8rem;
+            color: var(--charcoal-light);
+        }
+
+        .adhd-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .adhd-visual-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .adhd-visual-card .icon {
+            font-size: 2.2rem;
+            flex-shrink: 0;
+        }
+
+        .adhd-visual-card h3 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .adhd-visual-card p {
+            font-size: 0.85rem;
+            color: var(--charcoal-light);
+        }
+
+        /* Why section */
+        .adhd-why {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .adhd-why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .adhd-why-card {
+            background: var(--cream);
+            padding: 28px;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--sage);
+        }
+
+        .adhd-why-card .icon {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+
+        .adhd-why-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .adhd-why-card p {
+            font-size: 0.9rem;
+            color: var(--charcoal-light);
+            line-height: 1.6;
+        }
+
+        /* Product section */
+        .adhd-products {
+            padding: 80px 0;
+            background: linear-gradient(170deg, #E8F0E4, var(--cream));
+        }
+
+        .adhd-kit-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            padding: 48px;
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
+
+        .adhd-kit-header {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .adhd-kit-header .kit-icon {
+            font-size: 3rem;
+        }
+
+        .adhd-kit-header h3 {
+            font-size: 1.5rem;
+        }
+
+        .adhd-kit-header .kit-price {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--sage-dark);
+            margin-left: auto;
+        }
+
+        .adhd-kit-header .kit-was {
+            font-size: 1rem;
+            text-decoration: line-through;
+            color: var(--charcoal-light);
+            opacity: 0.6;
+        }
+
+        .adhd-includes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin: 24px 0 32px;
+        }
+
+        .adhd-include-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px;
+            background: rgba(168, 197, 160, 0.08);
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+
+        .adhd-include-item .emoji {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        /* Testimonials */
+        .adhd-testimonials {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .adhd-testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .adhd-testimonial {
+            background: var(--cream);
+            padding: 28px;
+            border-radius: var(--radius-md);
+            position: relative;
+        }
+
+        .adhd-testimonial .stars {
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .adhd-testimonial blockquote {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--charcoal);
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .adhd-testimonial cite {
+            font-size: 0.85rem;
+            color: var(--charcoal-light);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        /* CTA */
+        .adhd-cta {
+            padding: 80px 0;
+            background: linear-gradient(170deg, var(--cream), #E8F0E4);
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .adhd-hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .adhd-kit-card {
+                padding: 28px;
+            }
+
+            .adhd-kit-header {
+                flex-wrap: wrap;
+            }
+
+            .adhd-kit-header .kit-price {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <div class="nav-logo-icon">🧠</div>
+                ADHD Trackers
+            </a>
+            <div class="nav-links">
+                <a href="index.html">← Back to Shop</a>
+                <a href="#why">Why ADHD-Friendly</a>
+                <a href="#kit">The Kit</a>
+                <a href="#stories">Stories</a>
+                <a href="studio.html">🎨 Studio</a>
+                <a href="#kit" class="btn btn-primary btn-small">Get ADHD Kit 🧠</a>
+            </div>
+            <button class="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="adhd-hero">
+        <div class="container">
+            <div class="adhd-hero-content">
+                <div>
+                    <div class="hero-badge">🧠 Designed for Neurodivergent Brains</div>
+                    <h1>Habit trackers that <span>actually work</span> for ADHD</h1>
+                    <p class="hero-text">Most habit trackers are designed for neurotypical brains. Ours aren't. No
+                        overwhelm, no
+                        20-step routines, no guilt spirals. Just tiny, visual, dopamine-friendly steps.</p>
+                    <div class="hero-buttons">
+                        <a href="#kit" class="btn btn-primary">Get the ADHD Kit — $24.97 🧠</a>
+                        <a href="studio.html" class="btn btn-secondary">Try Free in Studio →</a>
+                    </div>
+                    <div class="adhd-stats">
+                        <div class="adhd-stat">
+                            <div class="adhd-stat-number">200+</div>
+                            <div class="adhd-stat-label">ADHD planners love it</div>
+                        </div>
+                        <div class="adhd-stat">
+                            <div class="adhd-stat-number">4.9 ⭐</div>
+                            <div class="adhd-stat-label">Average rating</div>
+                        </div>
+                        <div class="adhd-stat">
+                            <div class="adhd-stat-number">30 sec</div>
+                            <div class="adhd-stat-label">Daily time needed</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="adhd-visual">
+                    <div class="adhd-visual-card">
+                        <div class="icon">🎯</div>
+                        <div>
+                            <h3>One Habit at a Time</h3>
+                            <p>No multi-page journal. Just one clear, visual tracker for one habit.</p>
+                        </div>
+                    </div>
+                    <div class="adhd-visual-card">
+                        <div class="icon">🌟</div>
+                        <div>
+                            <h3>Sticker Rewards = Dopamine</h3>
+                            <p>Place a sticker. Get a micro-reward. Your brain wants to come back tomorrow.</p>
+                        </div>
+                    </div>
+                    <div class="adhd-visual-card">
+                        <div class="icon">📅</div>
+                        <div>
+                            <h3>Undated = Zero Guilt</h3>
+                            <p>Missed a week? No blank squares judging you. Pick up whenever you're ready.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why ADHD-Friendly -->
+    <section class="adhd-why" id="why">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">The Science</span>
+                <h2 class="section-title">Why These Work for ADHD Brains</h2>
+                <p class="section-subtitle">Designed with input from ADHD coaches and backed by the psychology of
+                    neurodivergent habit-building.</p>
+            </div>
+            <div class="adhd-why-grid">
+                <div class="adhd-why-card">
+                    <div class="icon">🧠</div>
+                    <h3>Low Executive Function Demand</h3>
+                    <p>No decisions to make. No pages to flip. Open → mark → done. Under 30 seconds.</p>
+                </div>
+                <div class="adhd-why-card">
+                    <div class="icon">👁️</div>
+                    <h3>Visual Progress, Not Lists</h3>
+                    <p>ADHD brains process visual information faster. Watching your grid fill up creates momentum your
+                        brain can
+                        SEE.</p>
+                </div>
+                <div class="adhd-why-card">
+                    <div class="icon">🎉</div>
+                    <h3>Dopamine-Friendly Design</h3>
+                    <p>Stickers, colors, cute characters — every element is designed to trigger the reward cycle your
+                        brain
+                        craves.</p>
+                </div>
+                <div class="adhd-why-card">
+                    <div class="icon">🚫</div>
+                    <h3>No Overwhelm Architecture</h3>
+                    <p>One habit. One page. No multi-tracker bullet journals. No 47-category planning systems. Just one
+                        small
+                        thing.</p>
+                </div>
+                <div class="adhd-why-card">
+                    <div class="icon">💚</div>
+                    <h3>Shame-Free Missing Days</h3>
+                    <p>Undated design means missing days don't create visible "failure streaks." You can't fall behind
+                        on something
+                        with no start date.</p>
+                </div>
+                <div class="adhd-why-card">
+                    <div class="icon">🎨</div>
+                    <h3>Sensory-Pleasing Aesthetics</h3>
+                    <p>Soft colors that don't overstimulate. Gentle characters that calm, not demand. Every visual
+                        decision is
+                        intentional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Kit -->
+    <section class="adhd-products" id="kit">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">The Kit</span>
+                <h2 class="section-title">ADHD Gentle Habits Kit</h2>
+                <p class="section-subtitle">Everything you need to start building one small, sustainable habit —
+                    designed
+                    specifically for how your brain works.</p>
+            </div>
+            <div class="adhd-kit-card">
+                <div class="adhd-kit-header">
+                    <div class="kit-icon">🧠</div>
+                    <div>
+                        <h3>ADHD Gentle Habits Kit</h3>
+                        <p style="color:var(--charcoal-light); font-size:0.9rem">The complete neurodivergent-friendly
+                            starter set
+                        </p>
+                    </div>
+                    <div style="text-align:right">
+                        <div class="kit-price">$24.97</div>
+                        <div class="kit-was">$38.91</div>
+                    </div>
+                </div>
+
+                <div class="adhd-includes-grid">
+                    <div class="adhd-include-item">
+                        <div class="emoji">📋</div>
+                        <div><strong>3 Choose-Your-Habit Trackers</strong><br>30-day, minimal friction design</div>
+                    </div>
+                    <div class="adhd-include-item">
+                        <div class="emoji">🌟</div>
+                        <div><strong>3 Sticker Sheets</strong><br>Match each tracker theme for dopamine hits</div>
+                    </div>
+                    <div class="adhd-include-item">
+                        <div class="emoji">📝</div>
+                        <div><strong>"Tiny Steps" Prompt Card</strong><br>Habit-starting guide designed for ADHD</div>
+                    </div>
+                    <div class="adhd-include-item">
+                        <div class="emoji">🎨</div>
+                        <div><strong>Color + B&W Versions</strong><br>Ink-friendly option for every printer</div>
+                    </div>
+                    <div class="adhd-include-item">
+                        <div class="emoji">📄</div>
+                        <div><strong>US Letter + A4 Sizes</strong><br>Print at home or at a print shop</div>
+                    </div>
+                    <div class="adhd-include-item">
+                        <div class="emoji">♻️</div>
+                        <div><strong>Print Unlimited Copies</strong><br>One-time purchase, reuse forever</div>
+                    </div>
+                </div>
+
+                <div style="text-align:center">
+                    <a href="https://adorableaccountability.lemonsqueezy.com/checkout/adhd-kit" class="btn btn-accent"
+                        style="padding:16px 40px; font-size:1.1rem">Get the ADHD Kit — $24.97 🧠</a>
+                    <p style="margin-top:12px; font-size:0.85rem; color:var(--charcoal-light)">🔐 Secure checkout • ⚡
+                        Instant
+                        download • ♻️ Print forever</p>
+                    <p style="margin-top:8px; font-size:0.8rem; color:var(--charcoal-light)">
+                        💡 Save 36% vs buying separately (<s>$38.91</s>)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="adhd-testimonials" id="stories">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Real Stories</span>
+                <h2 class="section-title">What ADHD Planners Are Saying</h2>
+            </div>
+            <div class="adhd-testimonials-grid">
+                <div class="adhd-testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <blockquote>"As someone with ADHD, this is the only tracker I've ever finished. Simple, cute, no
+                        overwhelm.
+                        The stickers genuinely make me want to come back every day."</blockquote>
+                    <cite>— Jordan T., verified buyer</cite>
+                </div>
+                <div class="adhd-testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <blockquote>"My therapist recommended I try a visual tracker. This one actually works because it's
+                        SO simple.
+                        No planning required. Just open, mark, done."</blockquote>
+                    <cite>— Casey M., ADHD coach client</cite>
+                </div>
+                <div class="adhd-testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <blockquote>"I've wasted hundreds on planners that sit empty. This was $25, and I've used it every
+                        single day
+                        for 3 weeks. That's never happened."</blockquote>
+                    <cite>— Alex W., verified buyer</cite>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="adhd-cta">
+        <div class="container">
+            <div style="max-width:600px; margin:0 auto">
+                <h2 style="font-size:2rem; margin-bottom:16px">Your Brain Works Differently.<br>Your Tracker Should Too.
+                </h2>
+                <p style="font-size:1.1rem; color:var(--charcoal-light); margin-bottom:28px">
+                    Stop fighting systems that weren't built for you. Start with one tiny habit. 30 seconds a day.
+                </p>
+                <a href="https://adorableaccountability.lemonsqueezy.com/checkout/adhd-kit" class="btn btn-primary"
+                    style="padding:16px 40px; font-size:1.1rem">Get the ADHD Kit — $24.97 🧠</a>
+                <p style="margin-top:16px; font-size:0.9rem; color:var(--charcoal-light)">
+                    Or <a href="studio.html" style="color:var(--sage-dark); text-decoration:underline">try free in
+                        Studio</a>
+                    before you buy
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">🧠 Adorable Accountability</div>
+                    <p>ADHD-friendly habit trackers that make consistency feel possible.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Shop</h4>
+                    <a href="index.html">All Trackers</a>
+                    <a href="index.html#bundles">Bundles</a>
+                    <a href="#kit">ADHD Kit</a>
+                    <a href="studio.html">Tracker Studio</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <a href="index.html#about">About</a>
+                    <a href="mailto:hello@adorableaccountability.com">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024–2026 Adorable Accountability. Made with 🧠 for neurodivergent brains.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracker Studio — Adorable Accountability</title>
+    <meta name="description"
+        content="Design your perfect habit tracker. Choose a theme, set your duration, personalize the text, and preview your creation. Purchase to download the high-res watermark-free PDF.">
+    <link rel="stylesheet" href="studio.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+</head>
+
+<body>
+
+    <!-- ========== STUDIO NAV ========== -->
+    <nav class="studio-nav">
+        <a href="index.html" class="studio-nav-logo">
+            <span>🌸</span> Tracker Studio
+        </a>
+        <div class="studio-nav-links">
+            <a href="index.html">← Back to Shop</a>
+            <button class="btn btn-primary" id="btn-print">🔓 Purchase & Print</button>
+        </div>
+    </nav>
+
+    <!-- ========== MAIN STUDIO LAYOUT ========== -->
+    <div class="studio-container">
+
+        <!-- ===== CONTROLS PANEL ===== -->
+        <aside class="controls-panel">
+
+            <!-- Layer 1: Structure (locked) -->
+            <div class="layer-section">
+                <div class="layer-header">
+                    <div class="layer-number">1</div>
+                    <div>
+                        <div class="layer-title">Structure</div>
+                        <div class="layer-subtitle">Fixed layout — portrait, single page</div>
+                    </div>
+                </div>
+                <div
+                    style="padding:10px 14px; background:var(--cream); border-radius:var(--radius-sm); font-size:0.8rem; color:var(--charcoal-light)">
+                    🔒 Locked for consistency. Header → Character → Grid → Footer. Same skeleton for every tracker.
+                </div>
+                <!-- Couple Tracker Toggle -->
+                <div class="couple-toggle" id="couple-toggle">
+                    <div class="addon-check">✓</div>
+                    <div class="couple-info">
+                        <div class="addon-name">💕 Couple Tracker (x2)</div>
+                        <div class="addon-desc">Two grids on 1 sheet — track together!</div>
+                    </div>
+                </div>
+                <!-- Couple names (shown when couple mode active) -->
+                <div id="couple-names" style="display:none; margin-top:12px">
+                    <div class="text-field" style="margin-bottom:8px">
+                        <label for="input-name-a" style="font-size:0.8rem">Person A Name</label>
+                        <input type="text" id="input-name-a" placeholder="e.g. Sarah" maxlength="15">
+                    </div>
+                    <div class="text-field" style="margin-bottom:0">
+                        <label for="input-name-b" style="font-size:0.8rem">Person B Name</label>
+                        <input type="text" id="input-name-b" placeholder="e.g. Ahmad" maxlength="15">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Layer 2: Grid Engine -->
+            <div class="layer-section">
+                <div class="layer-header">
+                    <div class="layer-number">2</div>
+                    <div>
+                        <div class="layer-title">Grid Engine</div>
+                        <div class="layer-subtitle">Duration → auto grid layout</div>
+                    </div>
+                </div>
+                <div class="duration-options">
+                    <div class="duration-btn active" data-duration="30">
+                        <span class="dur-days">30</span>
+                        <span class="dur-label">Days</span>
+                        <span class="dur-grid">5 × 6</span>
+                    </div>
+                    <div class="duration-btn" data-duration="60">
+                        <span class="dur-days">60</span>
+                        <span class="dur-label">Days</span>
+                        <span class="dur-grid">6 × 10</span>
+                    </div>
+                    <div class="duration-btn" data-duration="90">
+                        <span class="dur-days">90</span>
+                        <span class="dur-label">Days</span>
+                        <span class="dur-grid">9 × 10</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Layer 3: Visual Theme -->
+            <div class="layer-section">
+                <div class="layer-header">
+                    <div class="layer-number">3</div>
+                    <div>
+                        <div class="layer-title">Visual Theme</div>
+                        <div class="layer-subtitle">Palette + character + accents</div>
+                    </div>
+                </div>
+                <div class="theme-grid">
+                    <div class="theme-card active" data-theme="calm">
+                        <div class="theme-card-emoji">🧘</div>
+                        <div class="theme-swatches">
+                            <div class="theme-swatch" style="background:#A8C5A0"></div>
+                            <div class="theme-swatch" style="background:#C8DFC3"></div>
+                            <div class="theme-swatch" style="background:#E8F0E4"></div>
+                            <div class="theme-swatch" style="background:#F2F7F0"></div>
+                        </div>
+                        <div class="theme-card-name">Calm</div>
+                    </div>
+                    <div class="theme-card" data-theme="cozy">
+                        <div class="theme-card-emoji">🧸</div>
+                        <div class="theme-swatches">
+                            <div class="theme-swatch" style="background:#E4A98E"></div>
+                            <div class="theme-swatch" style="background:#F5D6C8"></div>
+                            <div class="theme-swatch" style="background:#FBE8E0"></div>
+                            <div class="theme-swatch" style="background:#FDF5F0"></div>
+                        </div>
+                        <div class="theme-card-name">Cozy</div>
+                    </div>
+                    <div class="theme-card" data-theme="minimal">
+                        <div class="theme-card-emoji">✨</div>
+                        <div class="theme-swatches">
+                            <div class="theme-swatch" style="background:#B0A0C8"></div>
+                            <div class="theme-swatch" style="background:#DDD5E8"></div>
+                            <div class="theme-swatch" style="background:#EDE8F3"></div>
+                            <div class="theme-swatch" style="background:#F8F6FA"></div>
+                        </div>
+                        <div class="theme-card-name">Minimal</div>
+                    </div>
+                    <div class="theme-card" data-theme="nature">
+                        <div class="theme-card-emoji">🌿</div>
+                        <div class="theme-swatches">
+                            <div class="theme-swatch" style="background:#80B8A0"></div>
+                            <div class="theme-swatch" style="background:#B8E0D2"></div>
+                            <div class="theme-swatch" style="background:#DCF0E8"></div>
+                            <div class="theme-swatch" style="background:#F0F7F4"></div>
+                        </div>
+                        <div class="theme-card-name">Nature</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Layer 4: Text & Labels -->
+            <div class="layer-section">
+                <div class="layer-header">
+                    <div class="layer-number">4</div>
+                    <div>
+                        <div class="layer-title">Text & Labels</div>
+                        <div class="layer-subtitle">Personalize — menu-based only</div>
+                    </div>
+                </div>
+                <div class="text-field">
+                    <label for="input-name">Your Name (optional)</label>
+                    <input type="text" id="input-name" placeholder="e.g. Sarah" maxlength="20">
+                    <div class="char-count"><span id="name-count">0</span>/20</div>
+                </div>
+                <div class="text-field">
+                    <label for="input-habit">Habit Label</label>
+                    <select id="input-habit">
+                        <option value="Meditation">🧘 Meditation</option>
+                        <option value="Sleep Routine">🌙 Sleep Routine</option>
+                        <option value="Hydration">💧 Hydration</option>
+                        <option value="Gentle Movement">🏃‍♀️ Gentle Movement</option>
+                        <option value="Reading">📖 Reading</option>
+                        <option value="Journaling">📝 Journaling</option>
+                        <option value="Gratitude">🙏 Gratitude</option>
+                        <option value="Calm Routine">🌸 Calm Routine</option>
+                        <option value="Morning Routine">🌅 Morning Routine</option>
+                        <option value="Self Care">💛 Self Care</option>
+                    </select>
+                </div>
+                <div class="text-field">
+                    <label for="input-title">Tracker Title (auto-generated or custom)</label>
+                    <input type="text" id="input-title" placeholder="e.g. My Calm Practice" maxlength="40">
+                    <div class="char-count"><span id="title-count">0</span>/40</div>
+                </div>
+                <div class="text-field">
+                    <label for="input-subtitle">Subtitle (optional)</label>
+                    <input type="text" id="input-subtitle" placeholder="e.g. one day at a time" maxlength="50">
+                    <div class="char-count"><span id="subtitle-count">0</span>/50</div>
+                </div>
+            </div>
+
+            <!-- Layer 5: Add-ons -->
+            <div class="layer-section">
+                <div class="layer-header">
+                    <div class="layer-number">5</div>
+                    <div>
+                        <div class="layer-title">Add-Ons</div>
+                        <div class="layer-subtitle">System-compatible extras</div>
+                    </div>
+                </div>
+                <div class="addon-list">
+                    <div class="addon-toggle" data-addon="stickers">
+                        <div class="addon-check">✓</div>
+                        <div class="addon-info">
+                            <div class="addon-name">⭐ Sticker Sheet</div>
+                            <div class="addon-desc">Theme-matched stickers for every day</div>
+                        </div>
+                        <div class="addon-price">+$5</div>
+                    </div>
+                    <div class="addon-toggle" data-addon="rewards">
+                        <div class="addon-check">✓</div>
+                        <div class="addon-info">
+                            <div class="addon-name">🏆 Reward Card</div>
+                            <div class="addon-desc">Milestone celebrations built in</div>
+                        </div>
+                        <div class="addon-price">+$3</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Options -->
+            <div class="layer-section" style="border-bottom:none">
+                <div class="ink-toggle">
+                    <div class="toggle-switch" id="ink-toggle"></div>
+                    <label for="ink-toggle">Ink-Friendly Mode</label>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- ===== PREVIEW AREA ===== -->
+        <main class="preview-area">
+            <div class="preview-toolbar">
+                <span class="preview-label">📐 Live Preview — US Letter (8.5 × 11")</span>
+                <button class="btn btn-accent" id="btn-print-2">🔓 Purchase & Print</button>
+                <button class="btn btn-outline" id="btn-reset">↺ Reset</button>
+            </div>
+
+            <!-- Print settings guide (hidden during actual print) -->
+            <div class="print-settings-hint">
+                <strong>🖨️ For best print quality:</strong> In the print dialog → set <code>Margins</code> to
+                <strong>None</strong> · uncheck <strong>Headers and footers</strong> · check <strong>Background
+                    graphics</strong>
+            </div>
+            <div class="tracker-page" id="tracker-page" data-theme="calm">
+                <div class="tracker-inner">
+
+                    <!-- Decorative borders -->
+                    <div class="tracker-border"></div>
+                    <div class="tracker-border-inner"></div>
+
+                    <!-- Corner decorations -->
+                    <div class="tracker-corner corner-tl">🌸</div>
+                    <div class="tracker-corner corner-tr">🌸</div>
+                    <div class="tracker-corner corner-bl">🌸</div>
+                    <div class="tracker-corner corner-br">🌸</div>
+
+                    <!-- Header -->
+                    <div class="tracker-header">
+                        <div class="tracker-title" id="tracker-title">Meditation Tracker</div>
+                        <div class="tracker-divider"></div>
+                        <div class="tracker-subtitle" id="tracker-subtitle">30-day journey · one day at a time</div>
+                    </div>
+
+                    <!-- Characters (CSS mochi) -->
+                    <div class="tracker-characters" id="tracker-characters">
+                        <!-- Leaf decorations -->
+                        <div class="tracker-leaf leaf-left">
+                            <svg viewBox="0 0 40 60" fill="none">
+                                <path d="M30 5C15 10 5 25 8 45C10 55 18 58 22 55C28 50 32 35 30 20L28 8"
+                                    stroke="currentColor" stroke-width="1.5" fill="var(--t-secondary)" opacity="0.6" />
+                                <path d="M28 8C25 18 22 30 24 42" stroke="currentColor" stroke-width="1"
+                                    opacity="0.3" />
+                            </svg>
+                        </div>
+                        <!-- Mochi A (with bow — female) -->
+                        <div class="mochi" id="mochi-a">
+                            <div class="mochi-body">
+                                <div class="mochi-bow"></div>
+                                <div class="mochi-eyes">
+                                    <div class="mochi-eye"></div>
+                                    <div class="mochi-eye"></div>
+                                </div>
+                                <div class="mochi-smile"></div>
+                            </div>
+                            <div class="mochi-lotus">
+                                <div class="mochi-petal"></div>
+                                <div class="mochi-petal"></div>
+                                <div class="mochi-petal"></div>
+                            </div>
+                        </div>
+                        <!-- Cat companion -->
+                        <div class="mochi-cat">
+                            <div class="mochi-cat-body">
+                                <div class="mochi-cat-face">
+                                    <div class="mochi-cat-eye"></div>
+                                    <div class="mochi-cat-eye"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mochi B (no bow — male, hidden in single mode) -->
+                        <div class="mochi" id="mochi-b" style="display:none">
+                            <div class="mochi-body">
+                                <div class="mochi-eyes">
+                                    <div class="mochi-eye"></div>
+                                    <div class="mochi-eye"></div>
+                                </div>
+                                <div class="mochi-smile"></div>
+                            </div>
+                            <div class="mochi-lotus">
+                                <div class="mochi-petal"></div>
+                                <div class="mochi-petal"></div>
+                                <div class="mochi-petal"></div>
+                            </div>
+                        </div>
+                        <!-- Leaf right -->
+                        <div class="tracker-leaf leaf-right">
+                            <svg viewBox="0 0 40 60" fill="none">
+                                <path d="M30 5C15 10 5 25 8 45C10 55 18 58 22 55C28 50 32 35 30 20L28 8"
+                                    stroke="currentColor" stroke-width="1.5" fill="var(--t-secondary)" opacity="0.6" />
+                                <path d="M28 8C25 18 22 30 24 42" stroke="currentColor" stroke-width="1"
+                                    opacity="0.3" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Couple labels -->
+                    <div class="couple-labels">
+                        <span class="couple-label" id="label-a"></span>
+                        <span class="couple-label" id="label-b"></span>
+                    </div>
+
+                    <!-- THE GRID (dual-wrapper for couple mode) -->
+                    <div class="tracker-grids-wrapper">
+                        <div class="tracker-grid tracker-grid-a" id="tracker-grid" data-cols="6">
+                            <!-- Cells rendered by JS -->
+                        </div>
+                        <div class="grid-divider"></div>
+                        <div class="tracker-grid tracker-grid-b" id="tracker-grid-b" data-cols="6">
+                            <!-- Cells rendered by JS (couple mode) -->
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="tracker-footer">
+                        <div class="tracker-reward-zone" id="tracker-reward-zone">
+                            🏆 Reward zone: What will you celebrate at Day 30?
+                        </div>
+                        <div class="tracker-footer-text" id="tracker-footer-text">
+                            30 days · 5 × 6 grid · undated · print forever
+                        </div>
+                        <div class="tracker-footer-deco">🌸 · ⭐ · 🌸</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ADD-ON PREVIEWS -->
+            <div class="addon-previews">
+                <!-- Sticker Sheet -->
+                <div class="addon-preview-card" id="addon-stickers">
+                    <div class="addon-preview-header">⭐ Matching Sticker Sheet</div>
+                    <div class="sticker-grid" id="sticker-grid">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+                <!-- Reward Card -->
+                <div class="addon-preview-card" id="addon-rewards">
+                    <div class="addon-preview-header">🏆 Milestone Reward Card</div>
+                    <div class="reward-card-inner">
+                        <h3 style="font-family:var(--font-heading); margin-bottom:4px">My Streak Rewards</h3>
+                        <p style="font-size:0.85rem; color:var(--t-text-light)">Hit a milestone? Treat yourself!</p>
+                        <div class="reward-milestones" id="reward-milestones">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cross-promotion: Studio → Shop -->
+            <div class="studio-upsell">
+                <span>💌 Love this design?</span>
+                <a href="index.html#products">Order a premium physical print →</a>
+                <span class="studio-upsell-sep">•</span>
+                <a href="index.html#bundles">Save with a bundle →</a>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Right-click protection tooltip -->
+    <div class="right-click-tooltip" id="right-click-tooltip">🔒 This design is protected</div>
+
+    <!-- Purchase Gate Modal -->
+    <div class="purchase-overlay" id="purchase-overlay">
+        <div class="purchase-backdrop" id="purchase-backdrop"></div>
+        <div class="purchase-modal">
+            <button class="purchase-modal-close" id="purchase-close">&times;</button>
+            <div class="purchase-icon">🔓</div>
+            <h2>Unlock Your Tracker</h2>
+            <p class="purchase-subtitle">You've designed something beautiful! Purchase to download the
+                high-resolution, watermark-free PDF.</p>
+
+            <div class="purchase-tiers">
+                <a href="https://adorableaccountability.lemonsqueezy.com/checkout/single" target="_blank"
+                    class="purchase-tier" data-tier="single">
+                    <div class="tier-icon">📄</div>
+                    <div class="tier-info">
+                        <div class="tier-name">This Tracker</div>
+                        <div class="tier-desc">High-res PDF · watermark-free · print forever</div>
+                    </div>
+                    <div class="tier-price">$11.97</div>
+                </a>
+
+                <a href="https://adorableaccountability.lemonsqueezy.com/checkout/starter" target="_blank"
+                    class="purchase-tier featured" data-tier="starter">
+                    <div class="tier-icon">📦</div>
+                    <div class="tier-info">
+                        <div class="tier-name">The 30-Day Calm Kit</div>
+                        <div class="tier-desc">3 trackers + sticker sheets + reward cards</div>
+                    </div>
+                    <div class="tier-price">
+                        $19.97
+                        <span class="tier-original">$30.97</span>
+                    </div>
+                </a>
+
+                <a href="https://adorableaccountability.lemonsqueezy.com/checkout/collection" target="_blank"
+                    class="purchase-tier" data-tier="collection">
+                    <div class="tier-icon">🎁</div>
+                    <div class="tier-info">
+                        <div class="tier-name">Complete Collection</div>
+                        <div class="tier-desc">All themes · all durations · lifetime updates</div>
+                    </div>
+                    <div class="tier-price">
+                        $44.97
+                        <span class="tier-original">$89.91</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Cross-sell: Sticker Add-on -->
+            <label class="purchase-crosssell"
+                style="display:flex; align-items:center; gap:10px; padding:12px 16px; margin-top:12px; background:var(--peach-light, #FBE8E0); border-radius:12px; cursor:pointer; font-size:0.9rem; font-weight:600; color:#E4A98E; transition:0.3s">
+                <input type="checkbox" style="width:18px; height:18px; accent-color:#A8C5A0">
+                🌟 Add matching sticker sheet +$7
+            </label>
+
+            <div class="purchase-trust">
+                <span>🔐 Secure checkout</span>
+                <span>⚡ Instant delivery</span>
+                <span>♻️ Print unlimited</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Buy Bar -->
+    <div class="studio-floating-bar" id="floating-buy-bar">
+        <div class="floating-bar-inner">
+            <div class="floating-bar-text">
+                ❤️ Love it? Get it <strong>watermark-free</strong> for <strong>$11.97</strong>
+            </div>
+            <a href="https://adorableaccountability.lemonsqueezy.com/checkout/single" class="btn btn-accent btn-small"
+                id="floating-buy-btn">Get This Tracker ✨</a>
+        </div>
+    </div>
+
+    <script src="studio.js"></script>
+    <script>
+        // Extra bindings for character count
+        document.getElementById('input-name')?.addEventListener('input', e => {
+            document.getElementById('name-count').textContent = e.target.value.length;
+        });
+        document.getElementById('input-title')?.addEventListener('input', e => {
+            document.getElementById('title-count').textContent = e.target.value.length;
+        });
+        document.getElementById('input-subtitle')?.addEventListener('input', e => {
+            document.getElementById('subtitle-count').textContent = e.target.value.length;
+        });
+        document.getElementById('btn-reset')?.addEventListener('click', () => location.reload());
+
+        // ========== DESIGN PROTECTION ==========
+
+        // --- Purchase Gate: intercept ALL print triggers ---
+        const purchaseOverlay = document.getElementById('purchase-overlay');
+        const purchaseBackdrop = document.getElementById('purchase-backdrop');
+        const purchaseClose = document.getElementById('purchase-close');
+
+        function showPurchaseModal() {
+            purchaseOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hidePurchaseModal() {
+            purchaseOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Gate the Print button
+        document.getElementById('btn-print')?.addEventListener('click', (e) => {
+            e.stopImmediatePropagation();
+            showPurchaseModal();
+        }, true);  // capture phase to override studio.js handler
+
+        // Gate the secondary print button
+        document.getElementById('btn-print-2')?.addEventListener('click', (e) => {
+            e.stopImmediatePropagation();
+            showPurchaseModal();
+        }, true);
+
+        // Block Ctrl+P / Cmd+P keyboard shortcut
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                showPurchaseModal();
+            }
+        }, true);
+
+        // Close modal
+        purchaseClose?.addEventListener('click', hidePurchaseModal);
+        purchaseBackdrop?.addEventListener('click', hidePurchaseModal);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') hidePurchaseModal();
+        });
+
+        // --- Right-click protection ---
+        const tooltip = document.getElementById('right-click-tooltip');
+        const trackerPage = document.getElementById('tracker-page');
+        let tooltipTimer;
+
+        trackerPage?.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            tooltip.style.left = e.clientX + 12 + 'px';
+            tooltip.style.top = e.clientY - 10 + 'px';
+            tooltip.classList.add('visible');
+            clearTimeout(tooltipTimer);
+            tooltipTimer = setTimeout(() => tooltip.classList.remove('visible'), 2000);
+        });
+
+        // --- Block browser print via beforeprint event ---
+        window.addEventListener('beforeprint', (e) => {
+            // Inject blocker into the page so print output is blank
+            const blocker = document.createElement('div');
+            blocker.id = 'print-blocker';
+            blocker.style.cssText = `
+                position: fixed; inset: 0; z-index: 99999;
+                background: white; display: flex;
+                align-items: center; justify-content: center;
+                font-family: sans-serif; font-size: 18px; color: #666;
+            `;
+            blocker.innerHTML = '🔒 Purchase required to print — adorableaccountability.com';
+            document.body.appendChild(blocker);
+        });
+
+        window.addEventListener('afterprint', () => {
+            document.getElementById('print-blocker')?.remove();
+        });
+    </script>
+</body>
+
+</html>
