@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Disallow admin or utility paths (none currently, placeholder for future)
+# Disallow: /admin/
+
+Sitemap: https://adorableaccountability.com/sitemap.xml

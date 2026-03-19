@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — Adorable Accountability</title>
+  <meta name="description" content="Get in touch with Adorable Accountability. We'd love to hear from you.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+  <style>
+    .contact-page { padding: 120px 0 80px; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-top: 48px; }
+    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
+    .contact-info h2 { font-size: 1.8rem; margin-bottom: 16px; }
+    .contact-info p { color: var(--charcoal-light); line-height: 1.8; margin-bottom: 20px; }
+    .contact-method { display: flex; align-items: center; gap: 12px; padding: 16px; background: var(--cream); border-radius: 12px; margin-bottom: 12px; }
+    .contact-method .icon { font-size: 1.5rem; }
+    .contact-method h3 { font-size: 0.95rem; margin-bottom: 2px; }
+    .contact-method a, .contact-method p { font-size: 0.9rem; color: var(--charcoal-light); margin: 0; }
+    .contact-method a { color: var(--sage-dark); }
+    .contact-form-card { background: var(--white); border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-md); }
+    .contact-form-card h2 { font-size: 1.5rem; margin-bottom: 24px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; color: var(--charcoal); }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 16px; border: 1.5px solid rgba(168,197,160,0.3); border-radius: 10px; font-family: var(--font-body); font-size: 0.95rem; background: var(--cream); color: var(--charcoal); transition: border 0.2s; box-sizing: border-box; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--sage); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .response-time { text-align: center; font-size: 0.85rem; color: var(--charcoal-light); margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><div class="nav-logo-icon">🌸</div>Adorable Accountability</a>
+      <div class="nav-links">
+        <a href="index.html">← Back to Shop</a>
+        <a href="index.html#products">Shop Trackers</a>
+        <a href="studio.html">🎨 Studio</a>
+      </div>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-menu">
+      <a href="index.html">← Back to Shop</a>
+      <a href="index.html#products">Shop Trackers</a>
+      <a href="studio.html">🎨 Studio</a>
+    </div>
+  </nav>
+
+  <section class="contact-page">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Get In Touch</span>
+        <h1 class="section-title">We'd Love to Hear From You 🌸</h1>
+        <p class="section-subtitle">Questions about your order, custom designs, bulk pricing, or just want to share your tracker journey?</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2>How We Can Help</h2>
+          <p>We're a small, human team. Every email is read and responded to personally — usually within 24 hours.</p>
+
+          <div class="contact-method">
+            <div class="icon">📧</div>
+            <div>
+              <h3>Email</h3>
+              <a href="mailto:hello@adorableaccountability.com">hello@adorableaccountability.com</a>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="icon">⏱️</div>
+            <div>
+              <h3>Response Time</h3>
+              <p>Within 24 hours (Mon–Fri)</p>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="icon">🛍️</div>
+            <div>
+              <h3>Etsy Shop</h3>
+              <a href="https://etsy.com/shop/AdorableAccountability" target="_blank" rel="noopener">Open our Etsy shop →</a>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="icon">🎵</div>
+            <div>
+              <h3>TikTok / Instagram</h3>
+              <a href="https://tiktok.com/@adorableaccountability" target="_blank" rel="noopener">@adorableaccountability</a>
+            </div>
+          </div>
+
+          <div style="margin-top: 32px; padding: 20px; background: rgba(168,197,160,0.1); border-radius: 12px; border-left: 4px solid var(--sage);">
+            <h3 style="margin-bottom: 8px">🏫 Bulk / Classroom Orders?</h3>
+            <p style="font-size:0.9rem; color:var(--charcoal-light); margin: 0">Teachers, therapists, and coaches can get classroom packs (30 prints + site license) starting at $49.99. Just mention it in your message.</p>
+          </div>
+        </div>
+
+        <div class="contact-form-card">
+          <h2>Send a Message</h2>
+          <!-- This form will be connected to a form service (e.g. Formspree or ConvertKit) on deployment -->
+          <form id="contact-form" action="mailto:hello@adorableaccountability.com" method="get" enctype="text/plain">
+            <div class="form-group">
+              <label for="contact-name">Your Name</label>
+              <input type="text" id="contact-name" name="name" placeholder="e.g. Sarah" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email Address</label>
+              <input type="email" id="contact-email" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-subject">What's this about?</label>
+              <select id="contact-subject" name="subject">
+                <option value="order">Order issue / help</option>
+                <option value="custom">Custom / personalized tracker</option>
+                <option value="bulk">Bulk / classroom order</option>
+                <option value="membership">Monthly Design Drop membership</option>
+                <option value="general">General question</option>
+                <option value="partnership">Partnership / collaboration</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="body" placeholder="Tell us what you need..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%">Send Message 🌸</button>
+          </form>
+          <p class="response-time">⏱️ We typically reply within 24 hours</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>© 2026 Adorable Accountability. <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a></p>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

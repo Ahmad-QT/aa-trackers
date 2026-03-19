@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Navbar scroll effect ---
     const navbar = document.querySelector('.navbar');
-    let lastScroll = 0;
+
     window.addEventListener('scroll', () => {
         const currentScroll = window.scrollY;
         if (currentScroll > 50) {
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             navbar.classList.remove('scrolled');
         }
-        lastScroll = currentScroll;
+
     });
 
     // --- Mobile menu toggle ---
@@ -114,21 +114,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Color Swatch ↔ Theme Dropdown Sync ---
+    // --- Color Swatch ↔ Theme Dropdown Sync (single handler, no duplicate) ---
     const personalThemeSelect = document.getElementById('personal-theme');
-    const swatches = document.querySelectorAll('.color-swatch');
-
-    swatches.forEach(swatch => {
-        swatch.addEventListener('click', () => {
-            swatches.forEach(s => s.classList.remove('active'));
-            swatch.classList.add('active');
-            if (personalThemeSelect) personalThemeSelect.value = swatch.dataset.theme;
-        });
-    });
-
     if (personalThemeSelect) {
         personalThemeSelect.addEventListener('change', () => {
-            swatches.forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
             const match = document.querySelector(`.color-swatch[data-theme="${personalThemeSelect.value}"]`);
             if (match) match.classList.add('active');
         });
@@ -244,40 +234,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updatePreview();
 
-    // --- Sticker upsell toggle ---
+    // --- Sticker upsell toggle --- B3 fix: standardised to $7
     document.querySelectorAll('.product-sticker-upsell').forEach(btn => {
         btn.addEventListener('click', () => {
             btn.classList.toggle('added');
             if (btn.classList.contains('added')) {
-                btn.innerHTML = '🎉 Stickers added! (+$5)';
+                btn.innerHTML = '🎉 Stickers added! (+$7)';
                 btn.style.background = 'var(--sage)';
                 btn.style.color = 'white';
             } else {
-                btn.innerHTML = '🌟 Add matching stickers +$5';
+                btn.innerHTML = '🌟 Add matching stickers +$7';
                 btn.style.background = '';
                 btn.style.color = '';
             }
         });
     });
 
-    // --- Email form submission ---
-    const ctaForm = document.getElementById('cta-form');
-    if (ctaForm) {
-        ctaForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const emailInput = ctaForm.querySelector('input[type="email"]');
-            const btn = ctaForm.querySelector('button');
-            if (emailInput && emailInput.value) {
-                btn.textContent = '✓ Sent!';
-                btn.style.background = 'var(--sage-dark)';
-                emailInput.value = '';
-                setTimeout(() => {
-                    btn.textContent = 'Get Free Tracker';
-                    btn.style.background = '';
-                }, 3000);
-            }
-        });
-    }
+    // --- Email forms: both handled by ConvertKit embed (see form HTML).
+    // Fallback handler shows a friendly message if ConvertKit isn't loaded yet.
+    ['cta-form', 'subscribe-form'].forEach(id => {
+        const form = document.getElementById(id);
+        if (form && !form.dataset.ckManaged) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const emailInput = form.querySelector('input[type="email"]');
+                const btn = form.querySelector('button');
+                if (emailInput && emailInput.value) {
+                    btn.textContent = '✓ You\'re on the list!';
+                    btn.style.background = 'var(--sage-dark)';
+                    emailInput.value = '';
+                    setTimeout(() => {
+                        btn.textContent = btn.dataset.originalText || 'Subscribe';
+                        btn.style.background = '';
+                    }, 3000);
+                }
+            });
+        }
+    });
 
     // --- Floating elements parallax ---
     document.addEventListener('mousemove', (e) => {
@@ -297,8 +290,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 const target = entry.target;
                 const finalText = target.dataset.value;
-                const numericPart = parseInt(finalText.replace(/[^0-9]/g, ''));
-                const suffix = finalText.replace(/[0-9]/g, '');
+                // B1 fix: use parseFloat so "4.9" doesn't become 49
+                const numericPart = parseFloat(finalText.replace(/[^0-9.]/g, ''));
+                const suffix = finalText.replace(/[0-9.]/g, '');
                 let current = 0;
                 const step = Math.ceil(numericPart / 40);
                 const timer = setInterval(() => {
